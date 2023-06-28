@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {NevComponent} from "./NevComponent";
 
-type filterType = 'All'| 'ruble'| 'dollar'
+export type filterType = 'All'| 'ruble'| 'dollar'
 function App() {
     const [money, setMoney] = useState([
         {banknote: 'dollar', nominal: 100, number: ' a1234567890'},
@@ -28,26 +28,10 @@ function App() {
         setFilter(nameButton)
     }
     return (
-        <div>
-            <ul>
-                {currentMoney.map((objFromMoneyArr, index) => {
-                    return (
-                        <li key={index}>
-                            <span>{objFromMoneyArr.banknote}</span>
-                            <span>{objFromMoneyArr.nominal}</span>
-                            <span>{objFromMoneyArr.number}</span>
-                        </li>
-                    )
-                })}
-            </ul>
-            <div style={{marginLeft: '30px'}}>
-                <button onClick={() => onClickFilterHandler('All')}>all</button>
-                <button onClick={() => onClickFilterHandler('ruble')}>ruble</button>
-                <button onClick={() => onClickFilterHandler('dollar')}>dollar</button>
-            </div>
-        </div>
-
-    );
+        <NevComponent money={currentMoney}
+                      onClickFilterHandler={onClickFilterHandler}
+        />
+    )
 }
 
 export default App;
